@@ -2,8 +2,6 @@ import 'dart:io';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'constant.dart';
-
 FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
 AndroidNotificationChannel? channel;
 
@@ -20,6 +18,11 @@ class LocalNotification {
     );
 
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+    flutterLocalNotificationsPlugin!
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()!
+        .requestNotificationsPermission();
 
     if (Platform.isAndroid) {
       // Android
@@ -41,7 +44,7 @@ class LocalNotification {
 
     // Android
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings(notificationIcon);
+        AndroidInitializationSettings("@mipmap/ic_launcher");
 
     // IOS, MacOS, IPadOS (Apple)
     const DarwinInitializationSettings initializationSettingsIOS =
@@ -67,12 +70,26 @@ class LocalNotification {
   show(
     int id,
     String? title,
-    String? body,
-    NotificationDetails? notificationDetails, {
+    String? body, {
+    NotificationDetails? notificationDetails,
     String? payload,
   }) {
-    flutterLocalNotificationsPlugin!
-        .show(id, title, body, notificationDetails, payload: payload);
+    flutterLocalNotificationsPlugin!.show(
+        id,
+        title,
+        body,
+        notificationDetails ??
+            NotificationDetails(
+              android: AndroidNotificationDetails(
+                channel?.id ?? '',
+                channel?.name ?? '',
+                channelDescription: channel?.description ?? '',
+                playSound: true,
+                // color: Colors.white,
+                icon: "@mipmap/ic_launcher",
+              ),
+            ),
+        payload: payload);
   }
 }
 
