@@ -1,15 +1,20 @@
-import 'package:flutter/material.dart';
+import 'dart:math';
 
-// LocalNotification localNotification = LocalNotification();
+import 'package:flutter/material.dart';
+import 'package:push_notifikasi/firebase.dart';
+import 'package:push_notifikasi/local_notification.dart';
+// import 'package:push_notifikasi/sensor.dart';
+
+LocalNotification localNotification = LocalNotification();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Local Notification Configuration
-  // await localNotification.init();
+  await localNotification.init();
 
   // Firebase Configuration
-  // await FirebaseApp.init();
+  await FirebaseApp.init();
 
   runApp(const MyApp());
 }
@@ -62,7 +67,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // localNotification.show(Random().nextInt(10000), 'Hello world', 'Lorem ipsum dolor sit amet');
+          localNotification.show(Random().nextInt(10000), 'Hello world',
+              'Lorem ipsum dolor sit amet');
         },
         tooltip: 'Increment',
         child: const Icon(Icons.notifications),

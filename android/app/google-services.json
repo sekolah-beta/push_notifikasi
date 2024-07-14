@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "150600607095",
+    "project_id": "sekolah-beta-ff5e8",
+    "storage_bucket": "sekolah-beta-ff5e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150600607095:android:00a326a85760b3b37a2d72",
+        "android_client_info": {
+          "package_name": "com.sekolahbeta.push_notifikasi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyfpMx_EOGQ9eQjJgpFJplpHgpSvoVaGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
